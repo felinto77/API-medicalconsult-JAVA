@@ -16,7 +16,7 @@ public class User {
     private long idUser;
     @Column(name = "NAME_USER")
 
-    private String nameUser;
+    private String nameuser;
     @Column(name = "EMAIL")
 
     private String email;
