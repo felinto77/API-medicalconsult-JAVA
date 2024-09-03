@@ -4,12 +4,14 @@ import br.com.thiagofelinto.medicalconsult.user.domain.User;
 import br.com.thiagofelinto.medicalconsult.user.repositories.UserRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UserServices {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -25,4 +27,16 @@ public class UserServices {
         return userRepository.findById(id).orElseThrow(() ->
                 new ObjectNotFoundException("User não encontrado", id));
     }
+
+    public void deleteUser(Long id) {
+        User user = buscarUser(id);
+        userRepository.delete(user);
+    }
+
+    public User atualizarUser(User user) { return UserRepository.save(user); }
 }
+
+
+}
+
+
