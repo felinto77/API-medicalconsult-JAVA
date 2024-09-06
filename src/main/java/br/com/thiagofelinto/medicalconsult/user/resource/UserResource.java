@@ -39,15 +39,17 @@ public class UserResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<User> atualizarUsuario(@PathVariable Long id, @RequestBody User user) {
+    public ResponseEntity<User> atualizarUsuario(@PathVariable Long id, @RequestBody User userDetails) {
 
-        if (service.UserRepository.existsById(id)) {
+        if (!service.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
 
-        User userAtualizado = UserServices.atualizarUser(user);
+        
+        User userAtualizado = service.atualizarUser(id, userDetails);
         return ResponseEntity.ok(userAtualizado);
     }
 
-    }
+
+}
 

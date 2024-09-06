@@ -19,11 +19,11 @@ public class UserServices {
         return userRepository.save(user);
     }
 
-    public List<User> listarUser(){
+    public List<User> listarUser() {
         return userRepository.findAll();
     }
 
-    public User buscarUser(Long id){
+    public User buscarUser(Long id) {
         return userRepository.findById(id).orElseThrow(() ->
                 new ObjectNotFoundException("User não encontrado", id));
     }
@@ -33,10 +33,27 @@ public class UserServices {
         userRepository.delete(user);
     }
 
-    public User atualizarUser(User user) { return UserRepository.save(user); }
+    public User atualizarUser(Long id, User userDetails) {
+
+        User user = buscarUser(id);
+
+
+        user.setNameuser(userDetails.getNameuser());
+        user.setEmail(userDetails.getEmail());
+        user.setCpf(userDetails.getCpf());
+        user.setFone(userDetails.getFone());
+        user.setBirthDate(userDetails.getBirthDate());
+
+
+        return userRepository.save(user);
+    }
+
+    public boolean existsById(Long id) {
+        return userRepository.existsById(id);
+    }
 }
 
 
-}
+
 
 
