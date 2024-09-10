@@ -45,7 +45,7 @@ public class UserResource {
             return ResponseEntity.notFound().build();
         }
 
-        
+
         User userAtualizado = service.atualizarUser(id, userDetails);
         return ResponseEntity.ok(userAtualizado);
     }
