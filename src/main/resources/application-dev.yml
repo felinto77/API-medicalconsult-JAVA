@@ -1,18 +1,18 @@
 spring:
   jpa:
-    generate-ddl: 'true'
-    defer-datasource-initialization: 'true'
+    generate-ddl: true
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
-      show-sql: 'true'
+      show-sql: true
     h2:
       console:
         path: /h2-console
-        enable: 'true'
+        enable: true
         datasource:
           password: ''
           driver-class-name: org.h2.Driver
           username: sa
-          url: jdbc:h2:nem:marcasus
+          url: jdbc:h2:mem:thiago
       server:
         port: ${port:8080}
