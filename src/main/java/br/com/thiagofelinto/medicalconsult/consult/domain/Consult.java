@@ -12,16 +12,16 @@ public class Consult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CONSULT")
-    private long idConsult;
+    private long idconsult;
 
     @Column(name = "CONSULT_DATE")
     private Date consultDate;
 
     @Column(name = "DOCTOR_NAME")
-    private String doctorName;
+    private String doctorname;
 
     @Column(name = "PATIENT_NAME")
-    private String patientName;
+    private String patientname;
 
     @Column(name = "SYMPTOMS")
     private String symptoms;
@@ -31,12 +31,12 @@ public class Consult {
 
 
 
-    public long getIdConsult() {
-        return idConsult;
+    public long getidconsult() {
+        return idconsult;
     }
 
-    public void setIdConsult(long idConsult) {
-        this.idConsult = idConsult;
+    public void setidconsult(long idConsult) {
+        this.idconsult = idConsult;
     }
 
 
@@ -49,19 +49,19 @@ public class Consult {
     }
 
     public String getDoctorName() {
-        return doctorName;
+        return doctorname;
     }
 
     public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+        this.doctorname = doctorName;
     }
 
     public String getPatientName() {
-        return patientName;
+        return patientname;
     }
 
     public void setPatientName(String patientName) {
-        this.patientName = patientName;
+        this.patientname = patientName;
     }
 
     public String getSymptoms() {
