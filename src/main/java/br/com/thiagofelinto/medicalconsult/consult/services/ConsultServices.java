@@ -2,6 +2,8 @@ package br.com.thiagofelinto.medicalconsult.consult.services;
 
 import br.com.thiagofelinto.medicalconsult.consult.domain.Consult;
 import br.com.thiagofelinto.medicalconsult.consult.repositories.ConsultRepository;
+import br.com.thiagofelinto.medicalconsult.user.domain.User;
+import br.com.thiagofelinto.medicalconsult.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,24 @@ public class ConsultServices {
     @Autowired
     private ConsultRepository consultRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public List<Consult> getAllConsults() {
         return consultRepository.findAll();
     }
 
     public Consult createConsult(Consult consult) {
+
+        if (consult.getUser() != null) {
+
+            User user = userRepository.findById(consult.getUser().getIdUser()).orElse(null);
+            if (user != null) {
+                consult.setUser(user);
+            } else {
+                throw new IllegalArgumentException("Usuário não encontrado");
+            }
+        }
         return consultRepository.save(consult);
     }
 
@@ -32,10 +47,11 @@ public class ConsultServices {
         if (consult != null) {
             consult.setConsultDate(consultDetails.getConsultDate());
             consult.setDoctorName(consultDetails.getDoctorName());
-            consult.setPatientName(consultDetails.getPatientName());
+            consult.setUser(consultDetails.getUser());
             consult.setSymptoms(consultDetails.getSymptoms());
             consult.setDiagnosis(consultDetails.getDiagnosis());
             return consultRepository.save(consult);
+
         }
         return null;
     }

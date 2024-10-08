@@ -38,10 +38,10 @@ public class UserServices {
         User user = buscarUser(id);
 
 
-        user.setNameuser(userDetails.getNameuser());
+        user.setName(userDetails.getName());
         user.setEmail(userDetails.getEmail());
         user.setCpf(userDetails.getCpf());
-        user.setFone(userDetails.getFone());
+        user.setPhone(userDetails.getPhone());
         user.setBirthDate(userDetails.getBirthDate());
 
 

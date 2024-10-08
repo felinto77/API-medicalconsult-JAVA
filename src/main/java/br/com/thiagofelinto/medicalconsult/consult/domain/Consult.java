@@ -1,10 +1,11 @@
 package br.com.thiagofelinto.medicalconsult.consult.domain;
 
+import br.com.thiagofelinto.medicalconsult.user.domain.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Data;
 import java.util.Date;
+import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "CONSULTS")
 public class Consult {
@@ -12,16 +13,19 @@ public class Consult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CONSULT")
-    private long idconsult;
+    private long idConsult;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "CONSULT_DATE")
     private Date consultDate;
 
     @Column(name = "DOCTOR_NAME")
-    private String doctorname;
+    private String doctorName;
 
-    @Column(name = "PATIENT_NAME")
-    private String patientname;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
     @Column(name = "SYMPTOMS")
     private String symptoms;
@@ -30,15 +34,13 @@ public class Consult {
     private String diagnosis;
 
 
-
-    public long getidconsult() {
-        return idconsult;
+    public long getIdConsult() {
+        return idConsult;
     }
 
-    public void setidconsult(long idConsult) {
-        this.idconsult = idConsult;
+    public void setIdConsult(long idConsult) {
+        this.idConsult = idConsult;
     }
-
 
     public Date getConsultDate() {
         return consultDate;
@@ -49,19 +51,19 @@ public class Consult {
     }
 
     public String getDoctorName() {
-        return doctorname;
+        return doctorName;
     }
 
     public void setDoctorName(String doctorName) {
-        this.doctorname = doctorName;
+        this.doctorName = doctorName;
     }
 
-    public String getPatientName() {
-        return patientname;
+    public User getUser() {
+        return user;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientname = patientName;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getSymptoms() {
