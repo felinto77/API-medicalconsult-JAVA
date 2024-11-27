@@ -28,7 +28,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/user").hasAnyRole("ADMIN", "SECRETARIO")
                         .requestMatchers(HttpMethod.GET, "/user").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/user").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/user").hasAnyRole("ADMIN", "SECRETARIO")
+                        .requestMatchers(HttpMethod.DELETE, "/user").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
@@ -40,11 +40,12 @@ public class SecurityConfig {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
         auth.inMemoryAuthentication()
-                .withUser("THIAGO").password(passwordEncoder.encode("12345")).roles("ADMIN")
+                .withUser("ADMIN").password(passwordEncoder.encode("12345")).roles("ADMIN")
                 .and()
-                .withUser("THIGGA").password(passwordEncoder.encode("56789")).roles("PACIENTE")
+                .withUser("PACIENTE").password(passwordEncoder.encode("56789")).roles("PACIENTE")
                 .and()
-                .withUser("JULIANA").password(passwordEncoder.encode("54321")).roles("SECRETARIA");
+                .withUser("SECRETARIA").password(passwordEncoder.encode("54321")).roles("SECRETARIA");
+
 
     }
 
